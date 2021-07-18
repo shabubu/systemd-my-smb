@@ -1,0 +1,32 @@
+{
+  "name": "@sinpl.io/systemd-my-smb",
+  "version": "0.1.0",
+  "description": "Automates creating mount points, systemd units, and authentication for smb shares",
+  "files": [
+    "bin/",
+    "src/"
+  ],
+  "engines": {
+    "node": ">=14.9.0"
+  },
+  "scripts": {
+    "dev": "node bin/systemd-my-smb.mjs"
+  },
+  "dependencies": {
+    "commander": "^8.0.0",
+    "mkdirp": "^1.0.4"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sinpl-io/systemd-my-smb.git"
+  },
+  "author": "Jason Zajdel <zajdel.jason@gmail.com>",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/sinpl-io/systemd-my-smb/issues"
+  },
+  "homepage": "https://github.com/sinpl-io/systemd-my-smb#readme",
+  "bin": {
+    "systemd-my-smb": "bin/systemd-my-smb.mjs"
+  }
+}
