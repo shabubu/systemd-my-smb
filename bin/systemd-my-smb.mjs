@@ -54,12 +54,12 @@ program
   .option(
     '-fm, --file-mode <mode>',
     'unit mount file mode option',
-    '0777',
+    '0755',
   )
   .option(
     '-dm, --directory-mode <mode>',
     'unit mount directory mode option',
-    '0777',
+    '0755',
   )
   .option(
     '-to, --timeout <seconds>',
