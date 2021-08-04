@@ -67,22 +67,22 @@ program
     '30',
   )
   .option(
-    '-u, --user <smb user>',
-    'smb username. ignored if using credentials file',
-    '',
-  )
-  .option(
-    '-pw, --password <password>',
-    'smb password. ignored if using credentials file',
-    '',
-  )
-  .option(
     '-mr, --mount-as-root',
     'mounts shares as root. if not set will mount as running user'
   )
   .option(
     '-cf, --credential-file </path/to/credentials>',
-    'path to credentials file for credentials option',
+    'unit mount credentials file path option. user, and password ignored if set',
+    '',
+  )
+  .option(
+    '-u, --user <smb user>',
+    'unit mount smb username. ignored if using credentials file',
+    '',
+  )
+  .option(
+    '-pw, --password <password>',
+    'unit mount smb password. ignored if using credentials file',
     '',
   )
   .parse();
