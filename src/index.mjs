@@ -6,6 +6,7 @@ import startUnitFiles from './startUnitFiles.mjs';
 export default async function systemdMySmb(options) {
   // extract password so it is only used by relevant modules
   let { password } = options;
+  const { credentialFile } = options;
   if (password) {
     options.password = null;
   }
@@ -14,8 +15,13 @@ export default async function systemdMySmb(options) {
     // create local mount points to mount smb shares to
     await createMountPoints(options);
 
-    // generate unit files and place in systemd target directory
     console.log('You will be prompted, unless cached, for your password in order to create, enable, and/or start units.');
+
+    if (credentialFile) {
+      console.log('When using a credentials file be sure to check permissions on the file to ensure restricted access is maintained.')
+    }
+
+    // generate unit files and place in systemd target directory
     const unitFileOptions = { ...options, password };
     const unitFilenames = await createUnitFiles(unitFileOptions);
 
