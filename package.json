@@ -13,8 +13,7 @@
     "dev": "node bin/systemd-my-smb.mjs"
   },
   "dependencies": {
-    "commander": "^8.0.0",
-    "mkdirp": "^1.0.4"
+    "commander": "^8.0.0"
   },
   "repository": {
     "type": "git",
