@@ -76,6 +76,15 @@ program
     'smb password. ignored if using credentials file',
     '',
   )
+  .option(
+    '-mr, --mount-as-root',
+    'mounts shares as root. if not set will mount as running user'
+  )
+  .option(
+    '-cf, --credential-file </path/to/credentials>',
+    'path to credentials file for credentials option',
+    '',
+  )
   .parse();
 
 const options = program.opts();
