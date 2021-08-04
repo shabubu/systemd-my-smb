@@ -5,6 +5,7 @@ export default function unitTemplate(options) {
     charSet,
     credentialFile,
     directoryMode,
+    domain,
     extraOptions,
     fileMode,
     mountAsRoot,
@@ -26,6 +27,7 @@ export default function unitTemplate(options) {
   optionalOptions = password ? `${optionalOptions}password=${password},` : optionalOptions;
   optionalOptions = !mountAsRoot ? `${optionalOptions}uid=$(id -u),gid=$(id -g),` : optionalOptions;
   optionalOptions = credentialFile ? `${optionalOptions}credentials=${credentialFile},` : optionalOptions;
+  optionalOptions = domain ? `${optionalOptions}domain=${domain},` : optionalOptions;
 
   // trim any trailing comma
   if (optionalOptions.slice(-1) === ',') {

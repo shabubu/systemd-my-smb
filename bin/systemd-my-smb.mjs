@@ -72,7 +72,7 @@ program
   )
   .option(
     '-cf, --credential-file </path/to/credentials>',
-    'unit mount credentials file path option. user, and password ignored if set',
+    'unit mount credentials file path option. user, domain, and password ignored if set',
     '',
   )
   .option(
@@ -84,6 +84,11 @@ program
     '-pw, --password <password>',
     'unit mount smb password. ignored if using credentials file',
     '',
+  )
+  .option(
+    '-do, --domain <domain>',
+    'unit mount smb domain. ignored if using credentials file.',
+    ''
   )
   .parse();
 
