@@ -1,6 +1,6 @@
 {
   "name": "@sinpl.io/systemd-my-smb",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Automates creating mount points, systemd units, and authentication for smb shares",
   "files": [
     "bin/",
