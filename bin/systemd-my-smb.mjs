@@ -1,13 +1,16 @@
 #!/usr/bin/node
 import { promises as fs } from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
 import commander from 'commander';
 import systemdMySmb from '../src/index.mjs';
 
 // For security reasons we want to initialize as let in order to overwrite memory since passwords may be included.
 let program = commander.program;
+const packageJsonPath = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../package.json');
 
 program
-  .version(JSON.parse(await fs.readFile('package.json', 'utf8')))
+  .version(JSON.parse(await fs.readFile(packageJsonPath, 'utf8')))
   .requiredOption(
     '-H, --smb-host <hostname>', 
     'SMB server hostname'
