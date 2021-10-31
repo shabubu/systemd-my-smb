@@ -1,16 +1,54 @@
 # systemd-my-smb
 
-Full readme coming soon
+Systemd-my-smb is a command line application that will automatically create systemd unit files to mount SMB user share(s).
+
+## Example
+
+## Options
+<table>
+  <thead>
+    <tr>
+      <th>Arguments</th>
+      <th>Description</th>
+      <th>Example<t/h>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>-V, --version</td>
+      <td>Outputs the systemd-my-smb application version.</td>
+      <td><code>-V</code></td>
+    </tr>
+    <tr>
+      <td>-h, --help</td>
+      <td>Outputs the systemd-my-smb application options and descriptions.</td>
+      <td><code>-h</code></td>
+    </tr>
+    <tr>
+      <td>-H, --smb-host</td>
+      <td>Required. Hostname or IP Address of SMB Server to Mount shares from.</td>
+      <td><code>-H MyShare.local</code></td>
+    </tr>
+    <tr>
+      <td>-s, --shares</td>
+      <td>Required. A comma separated list of shares to mount from the SMB host.</td>
+      <td><code>-s photos,videos</code></td>
+    </tr>
+    <tr>
+      <td>-d, --root-directory</td>
+      <td>Root directory for shares. Will automatically attempt to create {root directory}/{SMB hostname}/{share name}. <b>Default:</b> <code>/home/{username}</code></td>
+      <td><code>-d /smb_shares</code></td>
+    </tr>
+    <tr>
+      <td>-ud, --systemd-unit-directory</td>
+      <td>Directory to store systemd unit files within. <b>Default:</b> <code>/etc/systemd/system</code></td>
+      <td><code>-ud /etc/systemd/system</code></td>
+    </tr>
+  </tbody>
+</table>
 
 ```
-Usage: systemd-my-smb [options]
-
-Options:
-  -V, --version                                  output the version number
-  -H, --smb-host <hostname>                      SMB server hostname
-  -s, --shares <shares>                          comma separated list of shares to mount with systemd
-  -d, --root-directory <directory>               root directory to mount shares in. When mounting shares they will be mounted with {root-directory}/{hostname}/{share} (default: "/home/$USER")
-  -ud, --systemd-unit-directory <directory>      directory to store systemd unit files (default: "/etc/systemd/system")
+-ud, --systemd-unit-directory <directory>      directory to store systemd unit files (default: "/etc/systemd/system")
   -eu, --enable-units                            enables smb units after creation
   -su, --start-units                             starts smb units after creation
   -eo, --extra-options <options>                 extra options for unit mount (default: "")
@@ -24,5 +62,4 @@ Options:
   -u, --user <smb user>                          unit mount smb username. ignored if using credentials file (default: "")
   -pw, --password <password>                     unit mount smb password. ignored if using credentials file (default: "")
   -do, --domain <domain>                         unit mount smb domain. ignored if using credentials file. (default: "")
-  -h, --help                                     display help for command
 ```
