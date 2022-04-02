@@ -40,33 +40,33 @@ program
   )
   .option(
     '-eo, --extra-options <options>',
-    'extra options for unit mount',
+    'extra options for mount',
     '',
   )
   .option(
     '-cs, --char-set <character set>',
-    'unit mount character set option',
+    'mount character set option',
     'utf8',
   )
   .option(
     '-p, --permissions <permissions>',
-    'unit mount smb permissions option',
+    'mount smb permissions option',
     permissions => permissions.toLowerCase() === 'rw' ? 'rw' : 'ro',
     'ro',
   )
   .option(
     '-fm, --file-mode <mode>',
-    'unit mount file mode option',
+    'mount file mode option',
     '0755',
   )
   .option(
     '-dm, --directory-mode <mode>',
-    'unit mount directory mode option',
+    'mount directory mode option',
     '0755',
   )
   .option(
     '-to, --timeout <seconds>',
-    'unit mount timeout',
+    'mount timeout',
     '30',
   )
   .option(
@@ -75,22 +75,22 @@ program
   )
   .option(
     '-cf, --credential-file </path/to/credentials>',
-    'unit mount credentials file path option. user, domain, and password ignored if set',
+    'mount credentials file path option. user, domain, and password ignored if set',
     '',
   )
   .option(
     '-u, --user <smb user>',
-    'unit mount smb username. ignored if using credentials file',
+    'mount smb username. ignored if using credentials file',
     '',
   )
   .option(
     '-pw, --password <password>',
-    'unit mount smb password. ignored if using credentials file',
+    'mount smb password. ignored if using credentials file',
     '',
   )
   .option(
     '-do, --domain <domain>',
-    'unit mount smb domain. ignored if using credentials file.',
+    'mount smb domain. ignored if using credentials file.',
     ''
   )
   .parse();
