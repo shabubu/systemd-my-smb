@@ -1,8 +1,27 @@
 # systemd-my-smb
 
-Systemd-my-smb is a command line application that will automatically create systemd unit files to mount SMB user share(s).
+Systemd-my-smb is a command line application that will automatically create systemd unit files to mount SMB user share(s). Whether you are new to Linux or wanting to automate mount your shares, systemd-my-smb is here to help you manage your smb systemd unit files.
 
-## Example
+## Installation
+```bash
+$ npm i -g systemd-my-smb
+```
+
+## Examples
+### No credentials
+```bash
+$ systemd-my-smb --smb-host MYSERVER --shares photos,movies,books --enable-units --start-units
+```
+
+### Username and Password
+```bash
+$ systemd-my-smb --smb-host MYSERVER --shares photos,movies,books --enable-units --start-units --permissions rw -cf /home/myuser/.myserver_credentials
+```
+
+### Credentials File (Recommended)
+```bash
+$ systemd-my-smb --smb-host MYSERVER --shares photos,movies,books --enable-units --start-units --permissions rw -cf /home/myuser/.myserver_credentials
+```
 
 ## Options
 <table>
@@ -44,22 +63,70 @@ Systemd-my-smb is a command line application that will automatically create syst
       <td>Directory to store systemd unit files within. <b>Default:</b> <code>/etc/systemd/system</code></td>
       <td><code>-ud /etc/systemd/system</code></td>
     </tr>
+    <tr>
+      <td>-eu, --enable-units</td>
+      <td>Enables SMB units after creation.</td>
+      <td><code>-eu</code></td>
+    </tr>
+    <tr>
+      <td>-su, --start-units</td>
+      <td>Starts SMB units after creation.</td>
+      <td><code>-su</code></td>
+    </tr>
+    <tr>
+      <td>-eo, --extra-options</td>
+      <td>Extra options for unit mount. <b>Default:</b> <code>""</code></td>
+      <td><code>-eo {mount option}</code></td>
+    </tr>
+    <tr>
+      <td>-cs, --char-set</td>
+      <td>Character set option for smb mount. <b>Default:</b> <code>utf8</code></td>
+      <td><code>-cs utf8</code></td>
+    </tr>
+    <tr>
+      <td>-p, --permissions</td>
+      <td>Mount permission for smb mount. <b>Default:</b> <code>ro</code></td>
+      <td><code>-p rw</code></td>
+    </tr>
+    <tr>
+      <td>-fm, --file-mode</td>
+      <td>File mode for smb mount. <b>Default:</b> <code>0755</code></td>
+      <td><code>-fm 0777</code></td>
+    </tr>
+    <tr>
+      <td>-dm, --directory-mode</td>
+      <td>Directory mode for smb mount. <b>Default:</b> <code>0755</code></td>
+      <td><code>-dm 0777</code></td>
+    </tr>
+    <tr>
+      <td>-to, --timeout</td>
+      <td>Timeout, in seconds, for smb mount. <b>Default:</b> <code>30</code></td>
+      <td><code>-to 10</code></td>
+    </tr>
+    <tr>
+      <td>-mr, --mount-as-root</td>
+      <td>Mounts shares as root. Default behavior mounts shares as user running systemd-my-smb.
+      <td><code>-mr</code></td>
+    </tr>
+    <tr>
+      <td>-cf, --credential-file</td>
+      <td>Path to credential file to use for mount. User, domain, and password options ignored when using credential file. <b>Default:</b> <code>""</code>
+      <td><code>-cf /home/myuser/.mysmb_credentials</code></td>
+    </tr>
+    <tr>
+      <td>-u, --user</td>
+      <td>SMB username for mount. <b>Default:</b> <code>""</code>
+      <td><code>-u myuser</code></td>
+    </tr>
+    <tr>
+      <td>-pw, --password</td>
+      <td>SMB password for mount. <b>Note:</b> Please consider using a credential file over this option. <b>Default:</b> <code>""</code>
+      <td><code>-pw 0aBadPassword!</code></td>
+    </tr>
+    <tr>
+      <td>-do, --domain</td>
+      <td>SMB domain for mount. <b>Default:</b> <code>""</code>
+      <td><code>-do workgroup</code></td>
+    </tr>
   </tbody>
 </table>
-
-```
--ud, --systemd-unit-directory <directory>      directory to store systemd unit files (default: "/etc/systemd/system")
-  -eu, --enable-units                            enables smb units after creation
-  -su, --start-units                             starts smb units after creation
-  -eo, --extra-options <options>                 extra options for unit mount (default: "")
-  -cs, --char-set <character set>                unit mount character set option (default: "utf8")
-  -p, --permissions <permissions>                unit mount smb permissions option (default: "ro")
-  -fm, --file-mode <mode>                        unit mount file mode option (default: "0755")
-  -dm, --directory-mode <mode>                   unit mount directory mode option (default: "0755")
-  -to, --timeout <seconds>                       unit mount timeout (default: "30")
-  -mr, --mount-as-root                           mounts shares as root. if not set will mount as running user
-  -cf, --credential-file </path/to/credentials>  unit mount credentials file path option. user, domain, and password ignored if set (default: "")
-  -u, --user <smb user>                          unit mount smb username. ignored if using credentials file (default: "")
-  -pw, --password <password>                     unit mount smb password. ignored if using credentials file (default: "")
-  -do, --domain <domain>                         unit mount smb domain. ignored if using credentials file. (default: "")
-```
