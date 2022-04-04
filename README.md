@@ -15,12 +15,12 @@ $ systemd-my-smb --smb-host MYSERVER --shares photos,movies,books --enable-units
 
 ### Username and Password
 ```bash
-$ systemd-my-smb --smb-host MYSERVER --shares photos,movies,books --enable-units --start-units --permissions rw -cf /home/myuser/.myserver_credentials
+$ systemd-my-smb --smb-host MYSERVER --shares photos,movies,books --enable-units --start-units --permissions rw --user myuser --password 0ABadPass!
 ```
 
 ### Credentials File (Recommended)
 ```bash
-$ systemd-my-smb --smb-host MYSERVER --shares photos,movies,books --enable-units --start-units --permissions rw -cf /home/myuser/.myserver_credentials
+$ systemd-my-smb --smb-host MYSERVER --shares photos,movies,books --enable-units --start-units --permissions rw --credential-file /home/myuser/.myserver_credentials
 ```
 
 ## Options
