@@ -2,6 +2,14 @@
   "name": "systemd-my-smb",
   "version": "1.0.0",
   "description": "Automates creating mount points, systemd units, and authentication for smb shares",
+  "keywords": [
+    "systemd",
+    "smb",
+    "share",
+    "network",
+    "nas",
+    "unit file"
+  ],
   "files": [
     "bin/",
     "src/"
@@ -12,9 +20,6 @@
   "scripts": {
     "dev": "node bin/systemd-my-smb.mjs",
     "release": "release-it"
-  },
-  "dependencies": {
-    "commander": "^8.0.0"
   },
   "repository": {
     "type": "git",
@@ -29,7 +34,10 @@
   "bin": {
     "systemd-my-smb": "bin/systemd-my-smb.mjs"
   },
+  "dependencies": {
+    "commander": "^9.1.0"
+  },
   "devDependencies": {
-    "release-it": "^14.11.6"
+    "release-it": "^14.14.0"
   }
 }
