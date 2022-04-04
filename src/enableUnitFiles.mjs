@@ -1,6 +1,6 @@
 import { exec } from 'child_process';
 
-export default async function enableUnitFiles({ enableUnits, unitFilenames }) {
+export async function enableUnitFiles({ enableUnits, unitFilenames }) {
   if (!enableUnits) {
     return;
   }

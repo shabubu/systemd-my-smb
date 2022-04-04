@@ -1,9 +1,9 @@
 import path from 'path';
 import { exec } from 'child_process';
-import generateSharePath from './generateSharePath.mjs'
-import unitTemplate from './unitTemplate.mjs';
+import { generateSharePath } from './generateSharePath.mjs'
+import { unitTemplate } from './unitTemplate.mjs';
 
-export default async function createUnitFiles(options) {
+export async function createUnitFiles(options) {
   const {
     shares,
     systemdUnitDirectory,

@@ -3,7 +3,7 @@ import { promises as fs } from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import * as commander from 'commander';
-import systemdMySmb from '../src/index.mjs';
+import { systemdMySmb } from '../src/index.mjs';
 
 // For security reasons we want to initialize as let in order to overwrite memory since passwords may be included.
 let program = commander.program;

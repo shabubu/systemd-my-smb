@@ -1,9 +1,9 @@
-import createMountPoints from './createMountPoints.mjs';
-import createUnitFiles from './createUnitFiles.mjs';
-import enableUnitFiles from './enableUnitFiles.mjs';
-import startUnitFiles from './startUnitFiles.mjs';
+import { createMountPoints } from './createMountPoints.mjs';
+import { createUnitFiles } from './createUnitFiles.mjs';
+import { enableUnitFiles } from './enableUnitFiles.mjs';
+import { startUnitFiles } from './startUnitFiles.mjs';
 
-export default async function systemdMySmb(options) {
+export async function systemdMySmb(options) {
   // extract password so it is only used by relevant modules
   let { password } = options;
   const { credentialFile } = options;

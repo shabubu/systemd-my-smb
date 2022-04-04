@@ -1,6 +1,6 @@
 import path from 'path';
 
-export default function unitTemplate(options) {
+export function unitTemplate(options) {
   const {
     charSet,
     credentialFile,

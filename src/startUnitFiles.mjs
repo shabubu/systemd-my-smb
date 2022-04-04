@@ -1,6 +1,6 @@
 import { exec } from 'child_process';
 
-export default async function startUnitFiles({ startUnits, unitFilenames }) {
+export async function startUnitFiles({ startUnits, unitFilenames }) {
   const enablePromises = unitFilenames.map((unitFilename) => {
     return new Promise((resolve, reject) => {
       if (!startUnits) {
