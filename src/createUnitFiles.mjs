@@ -3,6 +3,13 @@ import { exec } from 'child_process';
 import { generateSharePath } from './generateSharePath.mjs'
 import { unitTemplate } from './unitTemplate.mjs';
 
+/**
+ * Creates new unit file from template and saves into provided systemd directory.
+ * 
+ * @param {object} options                      Systemd-my-smb options object.
+ * @param {Array}  options.shares               Array of smb share names.
+ * @param {string} options.systemdUnitDirectory Path to save unit files to after generation.
+ */
 export async function createUnitFiles(options) {
   const {
     shares,
@@ -40,9 +47,6 @@ export async function createUnitFiles(options) {
   );
 
   await Promise.all(createPromises);
-
-  // overwrite password in options
-  options.password = null;
   
   return unitFilenames;
 }
