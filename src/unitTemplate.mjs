@@ -23,11 +23,14 @@ export function unitTemplate(options) {
   // build unit mount options
   let optionalOptions = extraOptions && extraOptions[extraOptions.length - 1] !== ',' ? `${extraOptions},` : extraOptions;
   optionalOptions = permissions === 'rw' ? `${optionalOptions}file_mode=${fileMode},dir_mode=${directoryMode},` : optionalOptions;
-  optionalOptions = user ? `${optionalOptions}user=${user},` : optionalOptions;
-  optionalOptions = password ? `${optionalOptions}password=${password},` : optionalOptions;
   optionalOptions = !mountAsRoot ? `${optionalOptions}uid=$(id -u),gid=$(id -g),` : optionalOptions;
-  optionalOptions = credentialFile ? `${optionalOptions}credentials=${credentialFile},` : optionalOptions;
-  optionalOptions = domain ? `${optionalOptions}domain=${domain},` : optionalOptions;
+  if (credentialFile) {
+    optionalOptions = `${optionalOptions}credentials=${credentialFile},`;
+  } else {
+    optionalOptions = user ? `${optionalOptions}user=${user},` : optionalOptions;
+    optionalOptions = password ? `${optionalOptions}password=${password},` : optionalOptions;
+    optionalOptions = domain ? `${optionalOptions}domain=${domain},` : optionalOptions;
+  }
 
   // trim any trailing comma
   if (optionalOptions.slice(-1) === ',') {
