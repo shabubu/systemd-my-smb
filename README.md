@@ -130,3 +130,20 @@ $ systemd-my-smb --smb-host MYSERVER --shares photos,movies,books --enable-units
     </tr>
   </tbody>
 </table>
+
+## Development
+### Running in development mode
+To run in development just use `npm run dev` and supply your arguments.
+```bash
+$ npm run dev -- --smb-host MYSERVER --shares photos,movies,books
+```
+
+### Updating dependencies
+Run `npm run update-dependencies` which will upgrade all packages in package.json, install, and update package-lock.json.
+
+### Publishing Releases
+Systemd-my-smb uses `release-it` for releasing. Use the following syntax for releases: `npm run release major|minor|patch`.
+
+### Tests
+Where are the tests!? This project was started with the goal of no transpilation while using native module support in Node. Unfortunately, there are only
+experimental ways to mock these modules. Without proper mocking support, testing is on hold.
