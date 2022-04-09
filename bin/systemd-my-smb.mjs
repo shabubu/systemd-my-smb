@@ -90,8 +90,12 @@ program
   )
   .option(
     '-do, --domain <domain>',
-    'mount smb domain. ignored if using credentials file.',
+    'mount smb domain. ignored if using credentials file',
     ''
+  )
+  .option(
+    '-C, --clean',
+    'stops, disables, and removes units generated for shares. Ignores all options for adding shares when enabled'
   )
   .parse();
 
