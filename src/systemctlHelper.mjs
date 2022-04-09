@@ -17,18 +17,25 @@ export async function systemctlExec(systemctlAction, unitFilenames) {
     ),
   );
 
-  console.warn(...await Promise.allSettled(systemctlPromises));
+  (await Promise.allSettled(systemctlPromises)).forEach(({ status, value }) => {
+    if (
+      status !== 'fulfilled'
+      && value
+    ) {
+      console.warn(value);
+    }
+  });
 }
 
 /**
- * Uses systemctl to disable provided unit file names, if clear option is true.
+ * Uses systemctl to disable provided unit file names, if clean option is true.
  * 
  * @param {object}  options               Systemd-my-smb options object.
- * @param {boolean} options.clear         Stop, disable, and delete shares, if true.
+ * @param {boolean} options.clean         Stop, disable, and delete shares, if true.
  * @param {Array}   options.unitFilenames Array of filenames/units to disable.
  */
-export async function disableUnitFiles({ clear, unitFilenames }) {
-  if (clear) {
+export async function disableUnitFiles({ clean, unitFilenames }) {
+  if (clean) {
     await systemctlExec('disable', unitFilenames);
   }
 }
@@ -60,14 +67,14 @@ export async function startUnitFiles({ startUnits, unitFilenames }) {
 }
 
 /**
- * Uses systemctl to stop provided unit file names, if clear option is true.
+ * Uses systemctl to stop provided unit file names, if clean option is true.
  * 
  * @param {object}  options               Systemd-my-smb options object.
- * @param {boolean} options.clear         Stop, disable, and delete shares, if true.
+ * @param {boolean} options.clean         Stop, disable, and delete shares, if true.
  * @param {Array}   options.unitFilenames Array of filenames/units to stop.
  */
-export async function stopUnitFiles({ clear, unitFilenames }) {
-  if (clear) {
+export async function stopUnitFiles({ clean, unitFilenames }) {
+  if (clean) {
     await systemctlExec('stop', unitFilenames);
   }
 }
