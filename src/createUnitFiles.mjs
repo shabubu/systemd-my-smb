@@ -1,6 +1,5 @@
-import path from 'path';
 import { exec } from 'child_process';
-import { generateSharePath } from './shareHelpert.mjs'
+import { generateUnitPath } from './shareHelper.mjs'
 import { unitTemplate } from './unitTemplate.mjs';
 
 /**
@@ -11,19 +10,12 @@ import { unitTemplate } from './unitTemplate.mjs';
  * @param {string} options.systemdUnitDirectory Path to save unit files to after generation.
  */
 export async function createUnitFiles(options) {
-  const {
-    shares,
-    systemdUnitDirectory,
-   } = options;
-  const unitFilenames = [];
+  const { shares } = options;
 
   const createPromises = shares.map((share) => new Promise((resolve, reject) => {
       // build unit file path
       let shareOptions = { ...options, share };
-      const sharePath = generateSharePath(shareOptions);
-      const trimmedSharePath = sharePath[0] === path.sep ? sharePath.substring(1) : sharePath;
-      const unitFilename = `${trimmedSharePath.replaceAll(path.sep, '-')}.mount`;
-      const unitPath = path.join(systemdUnitDirectory, unitFilename);
+      const unitPath = generateUnitPath(shareOptions);
   
       // write out generated unit file to systemd target
       exec(
@@ -38,8 +30,6 @@ export async function createUnitFiles(options) {
             return reject(stderr);
           }
 
-          unitFilenames.push(unitFilename);
-
           resolve(stdout);
         },
       );
@@ -47,6 +37,4 @@ export async function createUnitFiles(options) {
   );
 
   await Promise.all(createPromises);
-  
-  return unitFilenames;
 }
