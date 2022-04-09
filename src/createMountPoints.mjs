@@ -1,5 +1,5 @@
 import { promises as fs } from 'fs';
-import { generateSharePath } from './generateSharePath.mjs';
+import { generateSharePath } from './shareHelper.mjs';
 
 /**
  * Creates local directories to mount shares to.

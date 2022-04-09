@@ -1,6 +1,6 @@
 import path from 'path';
 import { exec } from 'child_process';
-import { generateSharePath } from './generateSharePath.mjs'
+import { generateSharePath } from './shareHelpert.mjs'
 import { unitTemplate } from './unitTemplate.mjs';
 
 /**
