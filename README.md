@@ -23,6 +23,11 @@ $ systemd-my-smb --smb-host MYSERVER --shares photos,movies,books --enable-units
 $ systemd-my-smb --smb-host MYSERVER --shares photos,movies,books --enable-units --start-units --permissions rw --credential-file /home/myuser/.myserver_credentials
 ```
 
+### Unmount and Remove Shares
+```bash
+$ systemd-my-smb --smb-host MYSERVER --shares photos,movies,books --clean
+```
+
 ## Options
 <table>
   <thead>
@@ -127,6 +132,11 @@ $ systemd-my-smb --smb-host MYSERVER --shares photos,movies,books --enable-units
       <td>-do, --domain</td>
       <td>SMB domain for mount. <b>Default:</b> <code>""</code>
       <td><code>-do workgroup</code></td>
+    </tr>
+    <tr>
+      <td>-C, --clean</td>
+      <td>Stops, disables, and removes units generated for shares. Ignores all options for adding shares when enabled.</td>
+      <td><code>-C</code></td>
     </tr>
   </tbody>
 </table>

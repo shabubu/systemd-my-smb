@@ -1,5 +1,7 @@
 import { createMountPoints } from './createMountPoints.mjs';
 import { createUnitFiles } from './createUnitFiles.mjs';
+import { deleteUnitFiles } from './deleteUnitFiles.mjs';
+import { generateUnitFilenames } from './shareHelper.mjs';
 import {
   disableUnitFiles,
   enableUnitFiles,
@@ -12,7 +14,7 @@ import {
  * 
  * @param {object}  options                      Systemd-my-smb options object.
  * @param {string}  options.charSet              Character set to use for shares.
- * @param {boolean} options.clear                Stop, disable, and delete shares, if true.
+ * @param {boolean} options.clean                Stop, disable, and delete shares, if true.
  * @param {string}  options.credentialFile       Credential file path.
  * @param {string}  options.directoryMode        Directory mode to use for share directories.
  * @param {string}  options.domain               Domain to use for shares.
@@ -48,8 +50,11 @@ export async function systemdMySmb(options) {
       console.log('When using a credentials file be sure to check permissions on the file to ensure restricted access is maintained.')
     }
 
+    const unitFilenames = generateUnitFilenames(options);
+
     if(options.clean) {
-      const unitFilenames = [];
+      // clear password in memory since it won't be needed
+      password = null;
 
       // stop services
       await stopUnitFiles({ ...options, unitFilenames });
@@ -58,21 +63,25 @@ export async function systemdMySmb(options) {
       await disableUnitFiles({ ...options, unitFilenames });
 
       // delete unit files
+      await deleteUnitFiles(options);
+
+      console.log('Clean process completed.');
     } else {
       // generate unit files and place in systemd target directory
       const unitFileOptions = { ...options, password };
-      const unitFilenames = await createUnitFiles(unitFileOptions);
+      await createUnitFiles(unitFileOptions);
   
       // clear password in memory
       unitFileOptions.password = null;
       password = null;
-
   
       // enable services
       await enableUnitFiles({ ...options, unitFilenames });
   
       // start services
       await startUnitFiles({ ...options, unitFilenames });
+
+      console.log('Create process completed.');
     }
   } catch(e) {
     console.error('The following error was encountered:')
