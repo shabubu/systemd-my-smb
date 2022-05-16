@@ -5,7 +5,9 @@ import { generateSharePath } from './shareHelper.mjs';
  * Creates local directories to mount shares to.
  * 
  * @param {object} options        Systemd-my-smb options object.
+ * @param {string} options.rootDirectory Directory root where smb shares will be stored.
  * @param {Array}  options.shares Array of smb share names.
+ * @param {string} options.smbHost       Hostname or IP of the SMB server.
  */
 export async function createMountPoints(options) {
   const { shares } = options;

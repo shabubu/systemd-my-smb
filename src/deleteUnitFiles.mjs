@@ -5,7 +5,9 @@ import { generateUnitPath } from './shareHelper.mjs'
  * Deletes unit files in provided systemd directory.
  * 
  * @param {object} options                      Systemd-my-smb options object.
+ * @param {string} options.rootDirectory        Directory root where smb shares will be stored.
  * @param {Array}  options.shares               Array of smb share names.
+ * @param {string} options.smbHost              Hostname or IP of the SMB server.
  * @param {string} options.systemdUnitDirectory Path to delete unit files for systemd.
  */
 export async function deleteUnitFiles(options) {
