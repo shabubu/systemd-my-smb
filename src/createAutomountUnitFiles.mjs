@@ -5,6 +5,7 @@ import { unitAutomountTemplate } from './unitAutomountTemplate.mjs';
 /**
  * Creates new automount unit file from template and saves into provided systemd directory, if automounting is true.
  * 
+ * @async
  * @param {object}  options                      Systemd-my-smb options object.
  * @param {boolean} options.automount            Whether to create automount unit files.
  * @param {Array}   options.shares               Array of smb share names.

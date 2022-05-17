@@ -4,6 +4,7 @@ import { generateSharePath } from './shareHelper.mjs';
 /**
  * Creates local directories to mount shares to.
  * 
+ * @async
  * @param {object} options        Systemd-my-smb options object.
  * @param {string} options.rootDirectory Directory root where smb shares will be stored.
  * @param {Array}  options.shares Array of smb share names.

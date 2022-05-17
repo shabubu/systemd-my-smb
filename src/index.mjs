@@ -17,6 +17,7 @@ import {
 /**
  * Generates unit files for smb shares from provided options.
  * 
+ * @async
  * @param {object}  options                      Systemd-my-smb options object.
  * @param {boolean} options.automount            Whether to create automount unit files.
  * @param {string}  options.charSet              Character set to use for shares.

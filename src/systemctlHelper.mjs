@@ -30,6 +30,7 @@ export async function systemctlExec(systemctlAction, unitFilenames) {
 /**
  * Uses systemctl to disable provided unit file names, if clean option is true.
  * 
+ * @async
  * @param {object}  options               Systemd-my-smb options object.
  * @param {boolean} options.clean         Stop, disable, and delete shares, if true.
  * @param {Array}   options.unitFilenames Array of filenames/units to disable.
@@ -43,6 +44,7 @@ export async function disableUnitFiles({ clean, unitFilenames }) {
 /**
  * Uses systemctl to enable provided unit file names, if enable units is true.
  * 
+ * @async
  * @param {object}  options               Systemd-my-smb options object.
  * @param {boolean} options.enableUnits   Enables all generated unit files, if true.
  * @param {Array}   options.unitFilenames Array of filenames/units to stop.
@@ -56,6 +58,7 @@ export async function enableUnitFiles({ enableUnits, unitFilenames }) {
 /**
  * Uses systemctl to start provided unit file names, if start units is true.
  * 
+ * @async
  * @param {object}  options               Systemd-my-smb options object.
  * @param {boolean} options.startUnits    Starts all generated unit files, if true.
  * @param {Array}   options.unitFilenames Array of filenames/units to stop.
@@ -69,6 +72,7 @@ export async function startUnitFiles({ startUnits, unitFilenames }) {
 /**
  * Uses systemctl to stop provided unit file names, if clean option is true.
  * 
+ * @async
  * @param {object}  options               Systemd-my-smb options object.
  * @param {boolean} options.clean         Stop, disable, and delete shares, if true.
  * @param {Array}   options.unitFilenames Array of filenames/units to stop.

@@ -5,6 +5,7 @@ import { unitTemplate } from './unitTemplate.mjs';
 /**
  * Creates new unit file from template and saves into provided systemd directory.
  * 
+ * @async
  * @param {object}  options                      Systemd-my-smb options object.
  * @param {string}  options.charSet              Character set to use for shares.
  * @param {string}  options.credentialFile       Credential file path.
