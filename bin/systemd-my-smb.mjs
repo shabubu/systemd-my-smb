@@ -97,6 +97,10 @@ program
     '-C, --clean',
     'stops, disables, and removes units generated for shares. Ignores all options for adding shares when enabled'
   )
+  .option(
+    '-A, --automount',
+    'creates automount unit files (asynchronous on demand mounting)',
+  )
   .parse();
 
 const options = program.opts();

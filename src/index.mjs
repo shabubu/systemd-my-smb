@@ -1,7 +1,12 @@
 import { createMountPoints } from './createMountPoints.mjs';
 import { createUnitFiles } from './createUnitFiles.mjs';
+import { createAutomountUnitFiles } from './createAutomountUnitFiles.mjs';
 import { deleteUnitFiles } from './deleteUnitFiles.mjs';
-import { generateUnitFilenames } from './shareHelper.mjs';
+import { deleteAutomountUnitFiles } from './deleteAutomountUnitFiles.mjs';
+import {
+  generateAutomountUnitFilenames, 
+  generateUnitFilenames,
+ } from './shareHelper.mjs';
 import {
   disableUnitFiles,
   enableUnitFiles,
@@ -13,6 +18,7 @@ import {
  * Generates unit files for smb shares from provided options.
  * 
  * @param {object}  options                      Systemd-my-smb options object.
+ * @param {boolean} options.automount            Whether to create automount unit files.
  * @param {string}  options.charSet              Character set to use for shares.
  * @param {boolean} options.clean                Stop, disable, and delete shares, if true.
  * @param {string}  options.credentialFile       Credential file path.
@@ -64,12 +70,14 @@ export async function systemdMySmb(options) {
 
       // delete unit files
       await deleteUnitFiles(options);
+      await deleteAutomountUnitFiles(options);
 
       console.log('Clean process completed.');
     } else {
       // generate unit files and place in systemd target directory
       const unitFileOptions = { ...options, password };
       await createUnitFiles(unitFileOptions);
+      await createAutomountUnitFiles(options);
   
       // clear password in memory
       unitFileOptions.password = null;

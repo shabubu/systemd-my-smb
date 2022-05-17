@@ -79,6 +79,11 @@ $ systemd-my-smb --smb-host MYSERVER --shares photos,movies,books --clean
       <td><code>-su</code></td>
     </tr>
     <tr>
+      <td>-A, --automount</td>
+      <td>Creates automount unit files (asynchronous on demand mounting). Do not confuse with mounting on startup. Read more [here](https://www.man7.org/linux/man-pages/man5/systemd.automount.5.html).</td>
+      <td><code>-A</code></td>
+    </tr>
+    <tr>
       <td>-eo, --extra-options</td>
       <td>Extra options for unit mount. <b>Default:</b> <code>""</code></td>
       <td><code>-eo {mount option}</code></td>
